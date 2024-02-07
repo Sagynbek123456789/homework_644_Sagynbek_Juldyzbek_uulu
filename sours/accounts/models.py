@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.auth import get_user_model
 
 
 class User(AbstractUser):
@@ -14,3 +15,4 @@ class User(AbstractUser):
     publication_counter = models.PositiveIntegerField(default=0, verbose_name='Счетчик публикации')
     subscription_counter = models.PositiveIntegerField(default=0, verbose_name='Счетчик подписок')
     subscriber_counter = models.PositiveIntegerField(default=0, verbose_name='Счетчик подписчиков')
+    subscriptions_users = models.ManyToManyField('accounts.User', related_name='subscribers_users', verbose_name='Подписки')
